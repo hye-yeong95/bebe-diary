@@ -8,7 +8,6 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-       
         try {
             const result = await axios.post('https://api.mybebe.net/api/auth/login',{
                 email,
@@ -18,14 +17,12 @@ export default function Login() {
                 localStorage.setItem('token', result.data.token)
                 navigate('/')
             }
-            console.log(result)
         } catch (error) {
             if(error.response.status === 422) {
                 setPassword('')
             }
         }
     }
-
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,7 +39,6 @@ export default function Login() {
                 <button>Login 버튼</button>
              </form>
         </div>
-       
     );
 }
 
