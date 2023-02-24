@@ -1,21 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('성공!');
-        setEmail('')
-        setPassword('')
+       
+        try {
+            const result = await axios.post('https://api.mybebe.net/api/auth/login',{
+                email,
+                password
+            });
+            if(result.status === 200) {
+                localStorage.setItem('token', result.data.token)
+                navigate('/')
+            }
+            console.log(result)
+        } catch (error) {
+            if(error.response.status === 422) {
+                setPassword('')
+            }
+        }
     }
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleChangeEmail = (e) => setEmail(e.target.value);
     const handleChangePassword = (e) => setPassword(e.target.value);
-
-    console.log(email, password);
 
     return (
         <div>
