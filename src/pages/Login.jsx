@@ -30,14 +30,25 @@ export default function Login() {
     const handleChangeEmail = (e) => setEmail(e.target.value);
     const handleChangePassword = (e) => setPassword(e.target.value);
 
+    const handleClick = (e) => navigate('/register');
+
     return (
-        <div>
-             <h1>Login Page</h1>   
-             <form onSubmit={handleSubmit}>
-                <input type='email' placeholder='email을 입력하세요' onChange={handleChangeEmail} value={email} />
-                <input type='password' placeholder='password를 입력하세요' onChange={handleChangePassword} value={password} />
+        <div >
+             <h1 className='underline'>Login</h1>   
+             <form onSubmit={handleSubmit} className='' >
+                <input
+                    type='email' 
+                    placeholder='email을 입력하세요' 
+                    onChange={handleChangeEmail} 
+                />
+                <input 
+                    type='password' 
+                    placeholder='password를 입력하세요' 
+                    onChange={handleChangePassword} 
+                />
                 <button>Login 버튼</button>
              </form>
+             <button onClick={handleClick}>회원 가입하기</button>
         </div>
     );
 }
