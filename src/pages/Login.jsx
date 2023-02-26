@@ -9,12 +9,12 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const result = await axios.post('https://api.mybebe.net/api/auth/login',{
+            const result = await axios.post('https://api.mybebe.net/api/v1/diary/auth/login',{
                 email,
                 password
             });
             if(result.status === 200) {
-                localStorage.setItem('token', result.data.token)
+                localStorage.setItem('token', result.data.accessToken)
                 navigate('/')
             }
         } catch (error) {
