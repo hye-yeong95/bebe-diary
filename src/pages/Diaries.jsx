@@ -1,35 +1,32 @@
 import axios from 'axios';
-import React, {  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Diaries() {
 
     const [diaries, setDiaries] = useState([]);
     
-    // useEffect(() => {
-    //     getDiaries();
-    // },[])
+    useEffect(() => {
+        getDiaries();
+    },[])
 
     const getDiaries = async () => {
-        e.preventDefault();
-        const response = await axios.get('https://api.mybebe.net/api/v1/diary');
+        const response = await axios.get('https://api.mybebe.net/api/v1/diary', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
         console.log(response);
-        setDiaries(response.data.data);
+        setDiaries(response.data);
     }
 
     const navigate = useNavigate();
-
-    // const [diaries, setDiaries] = useState([
-    //    { id:1, date: '2024.12.25', title: '아기 다이어리 제목', mood:'맑음' },
-    //    { id:2, date: '2024.12.25', title: '아기 다이어리 제목', mood:'맑음' },
-    //    { id:3, date: '2024.12.25', title: '아기 다이어리 제목', mood:'맑음' },
-    //    { id:4, date: '2024.12.25', title: '아기 다이어리 제목', mood:'맑음' },
-    // ]);
-
     
     const handleClick = (diaryId) => navigate(`/diary/${diaryId}`);
 
     const handleClickNew = () => navigate('/diary/new');
+
+    if(!diaries) return <h1>loading...</h1>
 
     return (
         <div>
@@ -38,13 +35,13 @@ export default function Diaries() {
             <section>
                 <ul>
                 {
-                    diaries.map((diary) => (
+                    diaries ? diaries.map((diary) => (
                         <li onClick={() => handleClick(diary.id)} key={diary.id}>
                             <span>{diary.date}</span>
                             <span>{diary.title}</span>
                             <span>{diary.mood}</span>
                         </li>
-                    ))
+                    )) : <h1>Loading...</h1>
                 }
                 </ul>
             </section>

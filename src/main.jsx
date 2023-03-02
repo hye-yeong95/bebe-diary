@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: '/register', element: <Register /> },
       { path: 'login', element: <Login /> },
       { path: '/diaries', element: isAuthenticated ? <Diaries /> : <Login /> },
-      { path: '/diary/:id', element: <DiaryDetail /> },
+      { path: '/diary/:diaryId', element: <DiaryDetail /> },
       { path: '/diary/new', element: <NewDiary /> }
     ]}
    ])

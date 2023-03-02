@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TagInfo from '../components/TagInfo';
 import TagButton from '../components/ui/TagButton';
 
 export default function NewDiary() {
+    const navigate = useNavigate();
 
     const [text, setText] = useState('')
     const [content, setContent] = useState('')
@@ -17,16 +19,18 @@ export default function NewDiary() {
     const [tagValue, setTagValue] = useState(1);
 
     const [title, setTitle] = useState('');
+
     const handleChangeTitle = (e) => setTitle(e.target.value);
 
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+          console.log(title, content, weight, height)
           const result = await axios.post('https://api.mybebe.net/api/v1/diary',{
-            title,
-            content,
-            weight,
-            height,
+          title,
+          content,
+          weight,
+          height,
           },
           {
             headers: {
@@ -34,8 +38,9 @@ export default function NewDiary() {
             }
           });
           console.log(result);
+          navigate('/diaries');
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
 

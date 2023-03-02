@@ -20,7 +20,7 @@ export default function TagInfo({tagValue, text, setText, weight, setWeight, hei
 
     switch(tagValue) {
         case 1 : 
-            return <input onChange={handleChangeText} type='text' placeholder='다이어리를 입력하세요 1 '/>
+            return <input onChange={handleChangeContent} type='text' placeholder='다이어리를 입력하세요 1 '/>
         case 2 : 
             return <div>
                 <h1>아기 몸무게?</h1>
@@ -35,7 +35,7 @@ export default function TagInfo({tagValue, text, setText, weight, setWeight, hei
                 </div>
             </div>
         case 3 : 
-            return <input type='text' onChange={handleChangeContent}/>
+            return <input type='text' onChange={handleChangeText}/>
         default : 
         return ;
     }

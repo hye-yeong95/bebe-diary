@@ -8,12 +8,11 @@ export default function Navbar() {
 
     const navigate = useNavigate()
 
-    const login = (e) => { 
+    const login = () => { 
         navigate('/login') 
     }
     
     const logout = async () => {
-        e.preventDefault();
         try {
             await axios.post('https://api.mybebe.net/api/v1/diary/auth/logout',null,
             {
