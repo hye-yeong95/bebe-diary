@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/user';
 
 export default function Login() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,6 +18,7 @@ export default function Login() {
             });
             if(result.status === 200) {
                 localStorage.setItem('token', result.data.accessToken)
+                dispatch(login({name: result.data.user.name, id: result.data.user.id}));
                 navigate('/')
             }
         } catch (error) {
@@ -35,7 +39,7 @@ export default function Login() {
     return (
         <div >
              <h1 className='underline'>Login</h1>   
-             <form onSubmit={handleSubmit} className='' >
+             <form onSubmit={handleSubmit} >
                 <input
                     type='email' 
                     placeholder='email을 입력하세요' 
