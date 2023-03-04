@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -10,6 +10,9 @@ import NotFound from './pages/NotFound'
 import DiaryDetail from './pages/DiaryDetail'
 import './index.css'
 import NewDiary from './pages/NewDiary'
+import DairyEdit from './pages/DairyEdit'
+import UserProfile from './pages/UserProfile'
+import UserEdit from './pages/UserEdit'
 
 
 
@@ -26,7 +29,11 @@ const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: '/diaries', element: isAuthenticated ? <Diaries /> : <Login /> },
       { path: '/diary/:diaryId', element: <DiaryDetail /> },
-      { path: '/diary/new', element: <NewDiary /> }
+      { path: '/diary/new', element: <NewDiary /> },
+      { path: '/diary/:diaryId/edit', element: <DairyEdit />},
+      { path: '/notfound', element: <NotFound /> },
+      { path: '/user', element: <UserProfile />},
+      { path: '/user/edit', element: <UserEdit />}
     ]}
    ])
 

@@ -5,6 +5,7 @@ import TagInfo from '../components/TagInfo';
 import TagButton from '../components/ui/TagButton';
 
 export default function NewDiary() {
+  
     const navigate = useNavigate();
 
     const [text, setText] = useState('')

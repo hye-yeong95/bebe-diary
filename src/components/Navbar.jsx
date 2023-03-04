@@ -1,6 +1,7 @@
 import React, {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
+import ProfileCard from './ui/ProfileCard';
 
 
 export default function Navbar() {
@@ -31,6 +32,9 @@ export default function Navbar() {
     return (
         <div className=' w- h-20 flex justify-between items-center'>
            <h1 className='text-5xl text-[#f95c58]'>Bebe Diary</h1>
+           <div>
+                <ProfileCard />
+           </div>
            {
             token ? 
             ( <button className='rounded-md text-[#f95c58] ' onClick={logout}>로그아웃 버튼 </button> ) : 
